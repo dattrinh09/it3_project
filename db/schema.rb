@@ -17,8 +17,40 @@ ActiveRecord::Schema.define(version: 2021_12_14_151734) do
     t.integer "age"
     t.string "email"
     t.string "subject"
+
+ActiveRecord::Schema.define(version: 2021_12_14_145650) do
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.integer "age"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+ActiveRecord::Schema.define(version: 2021_12_14_150315) do
+
+  create_table "subject_reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "subject_id"
+    t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "subjects", force: :cascade do |t|
+    t.integer "subject_code"
+    t.string "subject_name"
+    t.string "number_of_credits"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+
+  end
 end
