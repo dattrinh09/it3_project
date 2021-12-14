@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/show'
+  devise_for :users
   resources :subject_reviews
   resources :subjects
   root to: "static_pages#home"
