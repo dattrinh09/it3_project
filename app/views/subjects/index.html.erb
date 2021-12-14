@@ -1,14 +1,22 @@
+<div class="container pt-3">
 <p id="notice"><%= notice %></p>
+<div  style="float: left; with:70%">
+  <h1>Subjects</h1>
+</div>
+<div style="with:30%; float: right; margin: 1% 8.3% 5px;">
+  <button type="button" class="btn btn-primary" style="float: left">
+    <span><%= link_to 'New Subject', new_subject_path, class: 'text-white'%></span>
+  </button>
+</div>
 
-<h1>Subjects</h1>
 
-<table>
-  <thead>
+<table class="table">
+  <thead class="thead-dark text-center">
     <tr>
       <th>Subject code</th>
       <th>Subject name</th>
-      <th>Number of credits</th>
-      <th>Description</th>
+      <th >Number of credits</th>
+      <th>  </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,18 +24,35 @@
   <tbody>
     <% @subjects.each do |subject| %>
       <tr>
-        <td><%= subject.subject_code %></td>
-        <td><%= subject.subject_name %></td>
-        <td><%= subject.number_of_credits %></td>
-        <td><%= subject.description %></td>
-        <td><%= link_to 'Show', subject %></td>
-        <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-        <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-center"><%= subject.subject_code %></td>
+        <td class="text-center"><%= link_to subject.subject_name, subject, class: 'text-dark' %></td>
+        <td class="text-center"><%= subject.number_of_credits %></td>
+      
+        
+        <td class="text-right">
+          <%= link_to subject do %>
+            <button type="button" class="btn btn-info"><i class="far fa-eye"></i></button>
+          <% end %>
+        </td>
+        <td>
+          <% if current_user != nil %>
+            <% if current_user.id == subject.user_id %>
+              <%= link_to edit_subject_path(subject) do %>
+                <button type="button" class="btn btn-secondary"><i class="far fa-edit"></i></button>
+              <% end %>
+                    
+              <%= link_to subject, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
+    
   </tbody>
 </table>
-
+<%= paginate @subjects %>
 <br>
+</div>
 
-<%= link_to 'New Subject', new_subject_path %>
