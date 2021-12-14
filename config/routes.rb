@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :teachers
   get 'users/show'
   devise_for :users
   resources :subject_reviews
