@@ -1,24 +1,99 @@
-<p id="notice"><%= notice %></p>
+<div class="container pt-3 x">
+  
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Subject code:</strong>
-  <%= @subject.subject_code %>
-</p>
+  <nav class="navbar navbar-expand-lg  ">
+    <ul class="navbar-nav mr-auto justify-content-center">
+      <li class="nav-item">
+         <span class="nav-link"><h2><%= @subject.subject_name %></h2></span>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" >
+      <li class="nav-item">
+           <% if current_user != nil %>
+            <% if current_user.id == @subject.user_id %>
+              <%= link_to edit_subject_path(@subject) do %>
+                <button type="button" class="btn btn-secondary"><i class="far fa-edit"></i></button>
+              <% end %>
+                    
+              <%= link_to @subject, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+              <% end %>
+            <% end %>
+          <% end %>
+      </li>
+    </ul>
+  </nav>
+  <hr>
+  
+  <div class="" style="margin-left: 5%">
+    <table class="" >
+       <tbody>
+         <tr>
+           <td><strong>Subject code:</strong></td>
+           <td style="padding-left: 15px"><%= @subject.subject_code %></td>
+          </tr>
+          <tr>
+            <td><strong>Number of credits:</strong></td>
+            <td style="padding-left: 15px"><%= @subject.number_of_credits %></td>
+          </tr>
+       </tbody>
+    </table>
+    
+    <strong>Description:</strong>
+    <p style="margin: -2.3% 5% 1% 9%"><%= @subject.description %></p>
+    <br>
+  
 
-<p>
-  <strong>Subject name:</strong>
-  <%= @subject.subject_name %>
-</p>
+    <div class="row">
+        <div class="col-2">
+            <button type="button"  class="nav-link btn btn-dark btn-sm " style="width: 100px">
+              <%= link_to 'Back', subjects_path, class: 'text-white' %>
+            </button>
+        </div>
+        <div class="col-8"></div>
+    </div>
+   </div>
+<hr>
 
-<p>
-  <strong>Number of credits:</strong>
-  <%= @subject.number_of_credits %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @subject.description %>
-</p>
+<h2>Review From</h2>
+ <%= form_with(model: @subject_review, local: true) do |form| %>
+   <div class= "field">
+     <%= form.text_area :review %>
+     <%= form.hidden_field :subject_id, :value => @subject.id %>
+   </div>
+   <div class="actions">
+     <%= form.submit %>
+   </div>
+ <% end %>
+ 
+ 
+ <h2>Review List</h2>
 
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
-<%= link_to 'Back', subjects_path %>
+     <ul>
+
+       <% @subject.subject_review.each do |subject_review|%><br>
+          <li  class="comment">
+          <b><%= subject_review.user.name if subject_review.user%></b><br>
+           <%= subject_review.review %>
+           </li> 
+           
+        <% end %>
+     </ul>
+     
+</div>
+ </div>
+
+<style>
+    .comment{
+        border: 1px solid #000;
+        padding-left:5px;
+        list-style : none;
+        border-radius: 10px;
+        padding-top: 5px;
+        padding-botton: 5px;
+        width: 800px;
+    }
+</style>
