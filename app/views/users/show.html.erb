@@ -1,9 +1,30 @@
-<hr>
-<h1>User Profile</h1>
-<h3>Mail Address</h3>
-<%= @user.email %>
+<div class="profile">
+<h1>Hello <%= @user.name %></h1>
+
+<p>
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, width: "25%" %>
+  <% end %>
+</p>
+
 <h3>Name</h3>
 <%= @user.name %>
-<h3>Age</h3>
+
+<h3>Age </h3>
 <%= @user.age %>
-</hr>
+
+
+<h3>Email</h3>
+<%= @user.email %> 
+</div>
+<style>
+.profile{
+    margin-top: 50px;
+    width:400px;
+    height: 400px;
+    border: 1px solid grey;
+    border-radius: 10px;
+
+}
+
+</style>
