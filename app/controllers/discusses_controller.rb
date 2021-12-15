@@ -1,6 +1,6 @@
 class DiscussesController < ApplicationController
   before_action :set_discuss, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_login, only: [:new, :create, :edit, :update, :destroy]
   # GET /discusses
   # GET /discusses.json
   def index
@@ -70,5 +70,10 @@ class DiscussesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def discuss_params
       params.require(:discuss).permit(:user_id, :content)
+    end
+    def check_login
+      if current_user.nil?
+        redirect_to new_user_session_path, error: "Please log in first!"
+      end
     end
 end
