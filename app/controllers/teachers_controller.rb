@@ -22,6 +22,7 @@ class TeachersController < ApplicationController
   # POST /teachers or /teachers.json
   def create
     @teacher = Teacher.new(teacher_params)
+  
 
     respond_to do |format|
       if @teacher.save
