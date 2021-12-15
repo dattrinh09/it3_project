@@ -22,6 +22,7 @@ class TeachersController < ApplicationController
   # POST /teachers or /teachers.json
   def create
     @teacher = Teacher.new(teacher_params)
+  
 
     respond_to do |format|
       if @teacher.save
@@ -64,6 +65,6 @@ class TeachersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def teacher_params
-      params.require(:teacher).permit(:name, :age, :email, :subject)
+      params.require(:teacher).permit(:name, :age, :email, :subject_code)
     end
 end
