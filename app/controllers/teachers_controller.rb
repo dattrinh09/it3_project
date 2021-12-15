@@ -1,5 +1,6 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: %i[ show edit update destroy ]
+  before_action :check_login, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /teachers or /teachers.json
   def index
@@ -66,5 +67,11 @@ class TeachersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def teacher_params
       params.require(:teacher).permit(:name, :age, :email, :subject_code)
+    end
+    
+    def check_login
+      if current_user.nil?
+        redirect_to new_user_session_path, error: "Please log in first!"
+      end
     end
 end
