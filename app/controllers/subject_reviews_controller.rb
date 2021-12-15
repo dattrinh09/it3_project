@@ -1,5 +1,6 @@
 class SubjectReviewsController < ApplicationController
   before_action :set_subject_review, only: %i[ show edit update destroy ]
+  before_action :check_login, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /subject_reviews or /subject_reviews.json
   def index
@@ -68,5 +69,11 @@ class SubjectReviewsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def subject_review_params
       params.require(:subject_review).permit(:user_id, :subject_id, :review)
+    end
+    
+    def check_login
+      if current_user.nil?
+        redirect_to new_user_session_path, error: "Please log in first!"
+      end
     end
 end
