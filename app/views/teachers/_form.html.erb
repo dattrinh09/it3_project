@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :subject %>
-    <%= form.text_field :subject %>
+   <%= collection_select(:teacher , :subject_code, Subject.all, :subject_code,:subject_name, {}, {:multiple => false}) %>
   </div>
 
   <div class="actions">
