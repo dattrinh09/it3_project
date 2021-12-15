@@ -4,10 +4,9 @@ Rails.application.routes.draw do
   get 'users/show'
   devise_for :users
   devise_scope :user do  
-   get '/users/sign_out' => 'devise/sessions#destroy'     
-end
-
-end
+   get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+  
   resources :subject_reviews
   resources :subjects
   #root to: "static_pages#home"
