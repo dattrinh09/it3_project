@@ -1,11 +1,11 @@
 <div class="container pt-3">
 <p id="notice"><%= notice %></p>
 <div  style="float: left; with:70%">
-  <h1>Subjects</h1>
+  <h1>Discusses</h1>
 </div>
 <div style="with:30%; float: right; margin: 1% 8.3% 5px;">
   <button type="button" class="btn btn-primary" style="float: left">
-    <span><%= link_to 'New Subject', new_subject_path, class: 'text-white'%></span>
+    <span><%= link_to 'New Discuss', new_discuss_path, class: 'text-white'%></span>
   </button>
 </div>
 
@@ -23,7 +23,7 @@
   <tbody>
     <% @discusses.each do |discuss| %>
       <tr>
-        <td class="text-center"><%= discuss.user_id %></td>
+        <td class="text-center"><%= discuss.user.name %></td>
         <td class="text-center"><%= discuss.content %></td>
       
         
