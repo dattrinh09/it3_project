@@ -1,25 +1,48 @@
-<div class="container">
+<div class="container pt-3 x">
+  
+  <p id="notice"><%= notice %></p>
+
+  <nav class="navbar navbar-expand-lg  ">
+    <ul class="navbar-nav mr-auto justify-content-center">
+      <li class="nav-item">
+         <span class="nav-link"><h2>User profile</h2></span>
+      </li>
+    </ul>
+  </nav>
+  <hr>
+  
+  <div class="" style="margin-left: 5%">
+    <table class="" >
+       <tbody>
+         <tr>
+            <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar, width: "25%" %>
+            <% end %>
+         </tr>
+         <tr>
+           <td><strong>User Name:</strong></td>
+           <td style="padding-left: 15px"><%= @user.name %></td>
+         </tr>
+         <tr>
+            <td><strong>Age:</strong></td>
+            <td style="padding-left: 15px"><%= @user.age %></td>
+          </tr>
+         <tr>
+            <td><strong>Email:</strong></td>
+            <td style="padding-left: 15px"><%= @user.email %></td>
+          </tr>
+       </tbody>
+    </table>
+    <br>
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="well well-sm">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <p>
-                            <% if @user.avatar.attached? %>
-                            <%= image_tag @user.avatar, width: "100%" %>
-                            <% end %>
-                        </p>
-                    </div>
-                    <div class="col-sm-6 col-md-8">
-                        <h4><%= @user.name %></h4>
-                        <p>
-                            <%= @user.email %>
-                            <br />
-                            <%= @user.age %> years old
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <div class="col-2">
+            <button type="button"  class="nav-link btn btn-dark btn-sm " style="width: 100px">
+              <%= link_to 'Back', discusses_path, class: 'text-white' %>
+            </button>
         </div>
+        <div class="col-8"></div>
     </div>
+   </div>
+<hr>
+
 </div>
