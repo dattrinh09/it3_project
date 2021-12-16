@@ -1,25 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="container pt-3 x">
+  
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @teacher.name %>
-</p>
+  <nav class="navbar navbar-expand-lg  ">
+    <ul class="navbar-nav mr-auto justify-content-center">
+      <li class="nav-item">
+         <span class="nav-link"><h2>Teacher profile</h2></span>
+      </li>
+    </ul>
+  </nav>
+  <hr>
+  
+  <div class="" style="margin-left: 5%">
+    <table class="" >
+       <tbody>
+         <tr>
+           <td><strong>Name:</strong></td>
+           <td style="padding-left: 15px"><%= @teacher.name %></td>
+          </tr>
+          <tr>
+            <td><strong>Age:</strong></td>
+            <td style="padding-left: 15px"><%= @teacher.age %></td>
+          </tr>
+          <tr>
+            <td><strong>Email:</strong></td>
+            <td style="padding-left: 15px"><%=  @teacher.email %></td>
+          </tr>
+          <tr>
+            <td><strong>Subject code:</strong></td>
+            <td style="padding-left: 15px"><%= @teacher.subject_code %></td>
+          </tr>
+       </tbody>
+    </table>
+    <br>
+    <div class="row">
+        <div class="col-2">
+            <button type="button"  class="nav-link btn btn-dark btn-sm " style="width: 100px">
+              <%= link_to 'Back', teachers_path, class: 'text-white' %>
+            </button>
+        </div>
+        <div class="col-8"></div>
+    </div>
+   </div>
+<hr>
 
-<p>
-  <strong>Age:</strong>
-  <%= @teacher.age %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @teacher.email %>
-</p>
-
-<p>
-  <strong>Subject_code:</strong>
-  <%= @teacher.subject_code %>
-</p>
+</div>
 
 
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
